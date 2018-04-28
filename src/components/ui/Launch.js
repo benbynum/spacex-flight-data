@@ -7,6 +7,15 @@ class Launch extends Component {
         super(props)
 
         this.style = {}
+
+        // TODO: Review color scheme and general UI layout
+        this.style.failure = {
+            backgroundColor: '#ffd2d2'
+        }
+        this.style.success = {
+            backgroundColor: '#d7f1d7'
+        }
+
     }
 
     componentWillMount() {
@@ -22,6 +31,7 @@ class Launch extends Component {
             WebkitLineClamp: 7,
             WebkitBoxOrient: 'vertical'
         }
+
     }
 
     render() {
@@ -36,7 +46,7 @@ class Launch extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="launch-details">
+                    <div className="launch-details" style={(success) ? this.style.success : this.style.failure}>
                         <div className="launch-details-container">
                             <h3>Flight #{flight}</h3>
                             <span className="date">
