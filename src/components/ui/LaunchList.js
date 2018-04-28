@@ -46,8 +46,8 @@ class LaunchList extends Component {
         return (
             <div id="Launch-Container">
                 {
-                    launches.map(() => 
-                        <Launch />
+                    launches.map((launch, i) => 
+                        <Launch missionPatch={launch.links.mission_patch_small} key={i}/>
                     )
                 }
             </div>
