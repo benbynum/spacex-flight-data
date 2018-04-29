@@ -52,7 +52,8 @@ class LaunchList extends Component {
                                 flight={launch.flight_number}
                                 details={launch.details}
                                 success={launch.launch_success}
-                                date={launch.launch_date_local}/>
+                                date={launch.launch_date_local}
+                                location={launch.launch_site.site_name_long}/>
                     )
                 }
             </div>

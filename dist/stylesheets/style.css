@@ -1,7 +1,8 @@
 html, body {
-    font-family: "Helvetica", sans-serif;
+    font-family: "Lora", sans-serif;
     min-width: 100%;
     margin: 0;
+    background-color: #e9edf1;
 }
 * {
     box-sizing: border-box;
