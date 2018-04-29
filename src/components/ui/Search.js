@@ -4,16 +4,17 @@ import FaSearch from 'react-icons/lib/fa/search'
 import FaClose from 'react-icons/lib/fa/close' 
 
 class Search extends Component {
+
 	render() {
 
-	let _Search;
-	let _this = this;
+		let _Search;
+		let _this = this;
 
-	const clearSearch = function() {
-		_this.props.clearSearch();
-		_Search.value = '';
-		_Search.focus();
-	}
+		const clearSearch = function() {
+			_this.props.clearSearch();
+			_Search.value = '';
+			_Search.focus();
+		}
 
 		return (
 			<div
