@@ -51,8 +51,12 @@ class Launch extends Component {
     }
 
     render() {
-        const { missionPatch, details, flight, success, date, location } = this.props
+        const { missionPatch, details, flight, success, date, location, video } = this.props
         const AnyReactComponent = ({ text }) => <div>{ text }</div>;
+
+        const openUrl = function(url) {
+            var win = window.open(url, '_blank');
+        }
 
         return (
             <div className="launch launch-item-container" style={(success ? this.style.successBgColor : this.style.failBgColor)}>
@@ -78,13 +82,13 @@ class Launch extends Component {
                             </h3>
                             <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
                         </div>
-                        <div className={"map-icon-container" + (success ? ' success' : ' failure')}>
-                            <FaMapMarker
-                                className="map-icon" />
+                        <div className={"map-icon-container" + (success ? ' success' : ' failure')}
+                             onClick={() => openUrl('http://maps.google.com/?q=' + location)}>
+                            <FaMapMarker className="map-icon" />
                         </div>
-                        <div className={"video-icon-container" + (success ? ' success' : ' failure')}>
-                            <FaYoutubePlay
-                            className="video-icon"/>
+                        <div className={"video-icon-container" + (success ? ' success' : ' failure')}
+                             onClick={() => openUrl(video)}>
+                            <FaYoutubePlay className="video-icon"/>
                         </div>
                     </div>
                     <div className="launch-item-bg">
