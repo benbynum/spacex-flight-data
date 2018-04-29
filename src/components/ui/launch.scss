@@ -1,3 +1,6 @@
+$success: #5ed189;
+$failure: #ef9986;
+
 #Launch-Container {
 	width: 100%;
 	padding: 10px;
@@ -100,6 +103,41 @@
 		}
 
 	}
+}
+.map-icon-container, .video-icon-container {
+	width: 25%;
+	height: 25%;
+	font-size: 2em;
+    position: absolute;
+    bottom: 0px;
+    color: lightgray;
+    cursor: pointer;
+}
+.map-icon-container {
+	right: 0px;
+}
+.video-icon-container {
+    left: 0px;
+}
+.map-icon {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	transition: .3s;
+}
+.video-icon {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	transition: .3s;
+}
+.map-icon-container.success:hover .map-icon, .video-icon-container.success:hover .video-icon{
+	color: gray;
+	transform: scale(1.2);
+}
+.map-icon-container.failure:hover .map-icon, .video-icon-container.failure:hover .video-icon{
+	color: gray;
+	transform: scale(1.2);
 }
 
 @media only screen and (min-width: 600px) {

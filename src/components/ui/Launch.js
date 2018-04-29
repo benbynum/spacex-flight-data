@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import './launch.scss'
-// import GoogleMapReact from 'google-map-react'
+import FaMapMarker from 'react-icons/lib/fa/map-marker' 
+import FaYoutubePlay from 'react-icons/lib/fa/youtube-play' 
 
 class Launch extends Component {
 
@@ -76,6 +77,14 @@ class Launch extends Component {
                                 }
                             </h3>
                             <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
+                        </div>
+                        <div className={"map-icon-container" + (success ? ' success' : ' failure')}>
+                            <FaMapMarker
+                                className="map-icon" />
+                        </div>
+                        <div className={"video-icon-container" + (success ? ' success' : ' failure')}>
+                            <FaYoutubePlay
+                            className="video-icon"/>
                         </div>
                     </div>
                     <div className="launch-item-bg">
