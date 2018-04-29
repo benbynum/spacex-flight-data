@@ -16,18 +16,15 @@ class LaunchList extends Component {
     }
 
     updateSearch(event) {
-        console.log('Updating search');
         this.setState({
             search: event.target.value.substr(0, 30)
         });
     }
 
-    componentWillUpdate(nextProps) {
-
-    }
-
-    componentDidUpdate(prevProps) {
-
+    clearSearch() {
+        this.setState({
+            search: ''
+        });
     }
     
     componentWillMount() {
@@ -45,13 +42,7 @@ class LaunchList extends Component {
             })
     }
 
-    componentDidMount() {
-       
-    }
-
     render() {
-        // const { launches } = this.state
-        console.log('this.state.launches: ', this.state.launches)
         let filteredLaunches = this.state.launches.filter(
             (launch) => {
                 if (!this.state.search.length) {
@@ -69,8 +60,10 @@ class LaunchList extends Component {
         return (
             <div>
                 <Search
+                    ref={(ref) => this.mainInput= ref}
                     value={this.state.search}
-                    onChange={this.updateSearch.bind(this)}/>
+                    onChange={this.updateSearch.bind(this)}
+                    clearSearch={this.clearSearch.bind(this)}/>
                 <div id="Launch-Container">
                     {
                         filteredLaunches.map((launch, i) => 
