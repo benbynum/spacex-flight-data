@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import fetch from 'isomorphic-fetch'
 import Launch from './Launch'
+import Search from './Search'
 
 class LaunchList extends Component {
 
@@ -44,18 +45,21 @@ class LaunchList extends Component {
         const { launches } = this.state
         
         return (
-            <div id="Launch-Container">
-                {
-                    launches.map((launch, i) => 
-                        <Launch missionPatch={launch.links.mission_patch_small}
-                                key={i}
-                                flight={launch.flight_number}
-                                details={launch.details}
-                                success={launch.launch_success}
-                                date={launch.launch_date_local}
-                                location={launch.launch_site.site_name_long}/>
-                    )
-                }
+            <div>
+                <Search />
+                <div id="Launch-Container">
+                    {
+                        launches.map((launch, i) => 
+                            <Launch missionPatch={launch.links.mission_patch_small}
+                                    key={i}
+                                    flight={launch.flight_number}
+                                    details={launch.details}
+                                    success={launch.launch_success}
+                                    date={launch.launch_date_local}
+                                    location={launch.launch_site.site_name_long}/>
+                        )
+                    }
+                </div>
             </div>
         )
     }
