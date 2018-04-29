@@ -9,9 +9,17 @@ class LaunchList extends Component {
         super(props)
         this.state = {
             launches: [],
-            loading: false
+            loading: false,
+            search: ''
         }
 
+    }
+
+    updateSearch(event) {
+        console.log('Updating search');
+        this.setState({
+            search: event.target.value.substr(0, 30)
+        });
     }
 
     componentWillUpdate(nextProps) {
@@ -42,14 +50,30 @@ class LaunchList extends Component {
     }
 
     render() {
-        const { launches } = this.state
-        
+        // const { launches } = this.state
+        console.log('this.state.launches: ', this.state.launches)
+        let filteredLaunches = this.state.launches.filter(
+            (launch) => {
+                if (!this.state.search.length) {
+                    return launch;
+                } else if (launch.details == null){
+                    launch.details = 'No availabel details';
+                    return launch;
+                } else if (launch.details.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1){
+                    return launch;
+                }
+
+            }
+        )
+
         return (
             <div>
-                <Search />
+                <Search
+                    value={this.state.search}
+                    onChange={this.updateSearch.bind(this)}/>
                 <div id="Launch-Container">
                     {
-                        launches.map((launch, i) => 
+                        filteredLaunches.map((launch, i) => 
                             <Launch missionPatch={launch.links.mission_patch_small}
                                     key={i}
                                     flight={launch.flight_number}

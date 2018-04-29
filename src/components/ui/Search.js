@@ -6,7 +6,10 @@ class Search extends Component {
 
 	render() {
 		return (
-			<div id="Search">
+			<div
+				id="Search"
+				value={this.props.value}
+				onChange={this.props.onChange}>
 				<FaSearch className="search-icon"/>
 				<input type="text" id="Search-Text" placeholder="Search flight data"/>
 			</div>
