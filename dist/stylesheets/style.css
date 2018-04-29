@@ -3,6 +3,7 @@ html, body {
     min-width: 100%;
     margin: 0;
     background-color: #e9edf1;
+    color: #4f4f4f;
 }
 * {
     box-sizing: border-box;

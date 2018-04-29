@@ -11,16 +11,25 @@ class Launch extends Component {
 
     constructor(props) {
         super(props)
+        const successColor = '#5ed189';
+        const failColor = '#ef9986';
 
         this.style = {}
 
         // TODO: Review color scheme and general UI layout
-        this.style.failure = {
-            backgroundColor: '#ef9986'
+        this.style.successColor = {
+            color: successColor
         }
-        this.style.success = {
-            backgroundColor: '#5ed189'
+        this.style.failColor = {
+            color: failColor
         }
+        this.style.successBgColor = {
+            backgroundColor: successColor
+        }
+        this.style.failBgColor = {
+            backgroundColor: failColor
+        }
+
 
     }
 
@@ -34,7 +43,7 @@ class Launch extends Component {
         }
         this.style.p = {
             display: '-webkit-box',
-            WebkitLineClamp: 7,
+            WebkitLineClamp: 6,
             WebkitBoxOrient: 'vertical'
         }
 
@@ -45,7 +54,7 @@ class Launch extends Component {
         const AnyReactComponent = ({ text }) => <div>{ text }</div>;
 
         return (
-            <div className="launch launch-item-container">
+            <div className="launch launch-item-container" style={(success ? this.style.successBgColor : this.style.failBgColor)}>
                 <div className="launch-item">
                     <div className="badge" style={this.style.bg}>
                         
@@ -60,13 +69,13 @@ class Launch extends Component {
                                   day: '2-digit' 
                                 }).format(new Date(date))}
                             </span>
-                            <h3 className="status">
+                            <h3 className="status" style={(success) ? this.style.successColor : this.style.failColor}> 
                                 {(success) ?
                                     'Success' :
                                     'Failure'
                                 }
                             </h3>
-                            <p className="details" style={this.style.p}>{details}</p>
+                            <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
                         </div>
                     </div>
                     <div className="launch-item-bg">
