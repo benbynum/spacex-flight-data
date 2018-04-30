@@ -43,7 +43,7 @@ class Launch extends Component {
         }
         this.style.p = {
             display: '-webkit-box',
-            WebkitLineClamp: 6,
+            WebkitLineClamp: 5,
             WebkitBoxOrient: 'vertical'
         }
 
