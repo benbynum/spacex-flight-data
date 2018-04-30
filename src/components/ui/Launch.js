@@ -66,7 +66,7 @@ class Launch extends Component {
                     </div>
                     <div className="launch-details">
                         <div className="launch-details-container">
-                            <h3>Flight #{flight}</h3>
+                            <h3 className="title">Flight #{flight}</h3>
                             <span className="date">
                                 {new Intl.DateTimeFormat('en-US', { 
                                   year: 'numeric', 
@@ -80,7 +80,7 @@ class Launch extends Component {
                                     'Failure'
                                 }
                             </h3>
-                            <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
+                                <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
                         </div>
                         <div className={"map-icon-container" + (success ? ' success' : ' failure')}
                              onClick={() => openUrl('http://maps.google.com/?q=' + location)}>
