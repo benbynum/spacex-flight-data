@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './launch.scss'
 import FaMapMarker from 'react-icons/lib/fa/map-marker' 
 import FaYoutubePlay from 'react-icons/lib/fa/youtube-play' 
+import FaExternalLink from 'react-icons/lib/fa/external-link' 
 
 class Launch extends Component {
 
@@ -50,7 +51,7 @@ class Launch extends Component {
     }
 
     render() {
-        const { missionPatch, details, flight, success, date, location, video } = this.props
+        const { missionPatch, details, flight, success, date, location, video, articleLink, presskit } = this.props
         const AnyReactComponent = ({ text }) => <div>{ text }</div>;
 
         const openUrl = function(url) {
@@ -81,6 +82,12 @@ class Launch extends Component {
                             </h3>
                             <div className="fade">
                                 <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
+                                <div
+                                    className="overlay"
+                                    onClick={() => (articleLink) ? openUrl(articleLink) : openUrl(presskit)}>
+                                    <span>Read more</span>
+                                    <div><FaExternalLink /></div>
+                                </div>
                             </div>
                         </div>
                         <div className={"map-icon-container" + (success ? ' success' : ' failure')}

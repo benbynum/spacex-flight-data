@@ -74,7 +74,9 @@ class LaunchList extends Component {
                                     success={launch.launch_success}
                                     date={launch.launch_date_local}
                                     location={launch.launch_site.site_name_long}
-                                    video={launch.links.video_link}/>
+                                    video={launch.links.video_link}
+                                    articleLink={launch.links.article_link}
+                                    presskit={launch.links.presskit}/>
                         )
                     }
                 </div>

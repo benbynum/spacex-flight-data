@@ -55,9 +55,26 @@ $failure: #ef9986;
 				// For all browsers
 				.fade {
 				  position: relative;
+				  cursor: pointer;
 				  p.details {
 				  	max-height: 7em;
 				  	overflow: hidden;
+				  }
+				  .overlay {
+				  	opacity: 0;
+				  	position: absolute;
+				  	width: 100%;
+				  	height: 100%;
+				  	background-color: rgba(248, 248, 248, 0.92);
+				  	top: 0;
+				  	left: 0;
+				  	font-size: 1.5em;
+				  	padding-top: 10px;
+				  	transition: .5s;
+				  	z-index: 5;
+				  }
+				  &:hover .overlay {
+					opacity: 1;
 				  }
 				}
 				.fade:after {
