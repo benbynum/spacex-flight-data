@@ -40,7 +40,6 @@ class Launch extends Component {
             backgroundSize: '50%',
             backgroundPosition: 'center 30px',
             backgroundRepeat: 'no-repeat'
-            // border: '10px solid #fbfbfb'
         }
         this.style.p = {
             display: '-webkit-box',
@@ -80,7 +79,9 @@ class Launch extends Component {
                                     'Failure'
                                 }
                             </h3>
+                            <div className="fade">
                                 <p className="details" style={this.style.p}>{(details) ? details : 'No available details.'}</p>
+                            </div>
                         </div>
                         <div className={"map-icon-container" + (success ? ' success' : ' failure')}
                              onClick={() => openUrl('http://maps.google.com/?q=' + location)}>
