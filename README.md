@@ -1,5 +1,5 @@
-WITWAER
+SpaceX Flight Data
 =====================
-Where In The World Are Elon's Rockets?
+An app to easily view and search all SpaceX flight data.
 
-An app to display and search SpaceX flight history.
+I recently found out there’s a public API for SpaceX data so I built this to easily view and search it all.
