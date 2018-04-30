@@ -48,7 +48,7 @@ class LaunchList extends Component {
                 if (!this.state.search.length) {
                     return launch;
                 } else if (launch.details == null){
-                    launch.details = 'No availabel details';
+                    launch.details = 'No available details';
                     return launch;
                 } else if (launch.details.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1){
                     return launch;
