@@ -31,7 +31,9 @@ class Launch extends Component {
         this.style.failBgColor = {
             backgroundColor: failColor
         }
-
+        this.state = {
+            loaded: false
+        }
 
     }
 
@@ -75,10 +77,10 @@ class Launch extends Component {
         return (
             <div className="launch launch-item-container" style={(success ? this.style.successBgColor : this.style.failBgColor)}>
                 <div className="launch-item">
-                    <div className="badge" style={this.style.bg}>
-                        
+                    <div className="badge">
+                        <img src={missionPatch} alt="" onLoad={() => this.setState({loaded: true})} style={this.state.loaded ? {opacity: 1} : {opacity: 0}}/>
                     </div>
-                    <div className="badge-placeholder-container">
+                    <div className="badge-placeholder-container" style={this.state.loaded ? {opacity: 0} : null}>
                         <div className="badge-placeholder"></div>
                     </div>
                     <div className="launch-details">
