@@ -5,18 +5,51 @@ import FaClose from 'react-icons/lib/fa/close'
 
 class Options extends Component {
 
-	onOrderChange() {
-		console.log('Ascending change')
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			isAscending: true
+		}
+
+		this.changeAscending = this.changeAscending.bind(this);
+		this.applyFilters = this.applyFilters.bind(this);
+
+	}
+
+	changeAscending(e) {
+		const isAscending = e.currentTarget.value === 'true' ? true: false;
+		console.log(isAscending)
 		this.setState({
-			ascending: !this.state.ascending
+			isAscending
 		})
 	}
 
-	onApply() {
-		console.log('Applying')
+	applyFilters() {
+		_this.props.updateFilters(this.state)
 	}
-
+	
 	render() {
+
+		let _this = this;
+		const { isAscending } = this.state;
+
+		const handleApply = function(btn) {
+			console.log('handleApply')
+			_this.props.updateFilters();
+			_this.props.toggleMenu();
+		}
+
+		const handleCancel = function() {
+			console.log('Cancelling')
+		}
+
+		const handleReset = function() {
+			console.log('Resetting')
+		}
+
+		
+
 		return (
 			<div id="Options-Container">
 
@@ -38,8 +71,8 @@ class Options extends Component {
 								type="radio"
 								id="Ascending"
 								value="true"
-								ref="Ascending"
-								checked={this.props.filters.ascending}
+								checked={isAscending === true}
+								onChange={this.changeAscending}
 								/>
 							<label htmlFor="Ascending">Ascending</label>
 							<br/>
@@ -48,8 +81,8 @@ class Options extends Component {
 								value="false"
 								type="radio"
 								id="Descending"
-								ref="Descending"
-								
+								checked={isAscending === false}
+								onChange={this.changeAscending}
 								/>
 							<label htmlFor="Descending">Descending</label>
 							<form></form>
@@ -72,11 +105,13 @@ class Options extends Component {
 						</div>
 						<div className="spacer"></div>
 						<div>
-							<button id="Cancel">Cancel</button>
-							<button id="Apply" onClick={() => onApply()}>Apply</button>
+							<button id="Cancel" onClick={() => handleButtonClick('Cancel')}>Cancel</button>
+							<button
+								id="Apply"
+								onClick={ () => this.props.updateFilters(this.state) }>Apply</button>
 						</div>
 						<div id="Reset-Container">
-							<button id="Reset">reset</button>
+							<button id="Reset" onClick={() => handleButtonClick('Reset')}>reset</button>
 						</div>
 					</div>
 				</div>

@@ -13,18 +13,16 @@ class LaunchList extends Component {
             loading: false,
             search: '',
             showMenu: false,
-            filters: {
-                ascending: true,
-                success: true,
-                failure: true,
-                fromDate: null,
-                toDate: null
-            }
+            ascending: true,
+            success: true,
+            failure: true,
+            fromDate: null,
+            toDate: null
         }
 
         this.formatDates = this.formatDates.bind(this);
         this.formatDate = this.formatDate.bind(this);
-
+        this.updateFilters = this.updateFilters.bind(this);
     }
 
     updateSearch(event) {
@@ -33,10 +31,16 @@ class LaunchList extends Component {
         });
     }
 
-    updateFilters(event) {
-        console.log('Filtering', event)
+    updateFilters(data) {
+        console.log('data', data.isAscending)
+        this.setState({
+            ascending: false,
+            showMenu: !this.state.showMenu
+        }, function() {
+            console.log('this.state: ', this.state)
+            // TODO: Finish filtering
+        })
     }
-
 
     clearSearch() {
         this.setState({
@@ -113,8 +117,7 @@ class LaunchList extends Component {
 
                 <Options
                     showMenu={this.state.showMenu}
-                    filters={this.state.filters}
-                    updateFilters={this.updateFilters.bind(this)}
+                    updateFilters={this.updateFilters}
                     toggleMenu={this.toggleMenu.bind(this)} />
                 
                 <div id="Launch-Container">

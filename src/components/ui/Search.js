@@ -6,25 +6,6 @@ class Search extends Component {
 
 	render() {
 
-		let _Search;
-		let _this = this;
-
-		const clearSearch = function() {
-			_this.props.clearSearch();
-			_Search.value = '';
-			_Search.focus();
-		}
-		const menuClick = function() {
-			console.log('menu click: ', _this.props.showMenu)
-			_this.props.showMenu = !_this.props.showMenu;
-		}
-		const showOptions = function() {
-
-		}
-		const hideOptions = function() {
-
-		}
-
 		return (
 			<div
 				id="Search"
@@ -35,9 +16,7 @@ class Search extends Component {
 				<input
 					type="text"
 					id="Search-Text"
-					placeholder="Search flight data"
-					ref="Search"
-					ref={input => _Search = input}/>
+					placeholder="Search flight data" />
 			</div>
 		)
 	}
