@@ -1,8 +1,6 @@
 import { Component } from 'react'
 import './search.scss'
 import FaSearch from 'react-icons/lib/fa/search' 
-import FaBars from 'react-icons/lib/fa/bars' 
-import FaClose from 'react-icons/lib/fa/close' 
 
 class Search extends Component {
 
@@ -33,9 +31,6 @@ class Search extends Component {
 				value={this.props.value}
 				onChange={this.props.onChange}>
 				<FaSearch className="search-icon"/>
-
-				{(this.props.showMenu === true) ? <FaClose className="close-icon" onClick={this.props.toggleMenu}/> :
-							  <FaBars className="bars-icon" onClick={this.props.toggleMenu} />}
 
 				<input
 					type="text"

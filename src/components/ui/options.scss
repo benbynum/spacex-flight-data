@@ -1,5 +1,7 @@
+$success: #5ed189;
+
 #Options {
-	width: calc(100% - 10px);
+	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 60px;
@@ -7,6 +9,83 @@
 	background: #172636;
 	z-index: 20;
 	opacity: .9;
-	padding: 10px;
-	color: white;
+	padding: 20px;
+	color: #efefef;
+	transition: .3s;
+	// font-family: 'Istok Web';
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-weight: 100;
+	&.opened {
+		right: 0;
+	}
+	&.closed {
+		right: -100%;
+	}
+	h3 {
+		font-size: 2em;
+		margin-top: 0;
+		margin-bottom: 20px;
+		font-weight: 200;
+	}
+	.spacer {
+		width: 10%;
+		height: 15px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid #909090;
+	}
+	.options-content {
+		font-size: 1.1em;
+		letter-spacing: 1px;
+		input {
+			margin-bottom: 10px;
+		}
+	}
+	#Cancel, #Apply, #Reset {
+		width: 50%;
+		height: 40px;
+		background: white;
+		font-size: 1em;
+		font-weight: 300;
+		outline: none;
+		border: none;
+		color: #333f4d;
+	}
+	#Cancel {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+	}
+	#Apply {
+		background-color: $success;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+	#Reset-Container {
+		text-align: center;
+		#Reset {
+			background: transparent;
+			display: block;
+			margin: 0 auto;
+			border: none;
+			color: #b4b4b4;
+			font-size: 90%;
+			text-decoration: underline;
+			font-weight: 100;
+		}
+	}
+}
+
+.close-icon, .bars-icon {
+	position: absolute;
+	font-size: 1.2em;
+	color: gray;
+	cursor: pointer;
+	z-index: 22;
+}
+.close-icon {
+    top: 18px;
+    right: 25px;
+}
+.bars-icon {
+	top: 20px;
+	right: 25px;
 }
