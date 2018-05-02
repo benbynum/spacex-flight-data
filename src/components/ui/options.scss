@@ -1,14 +1,24 @@
 $success: #5ed189;
 
+.options-bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #313841;
+	opacity: .99;
+	z-index: -1;
+}
 #Options {
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 60px;
 	right: 0;
-	background: #172636;
+	// background: #172636;
 	z-index: 20;
-	opacity: .9;
+	// opacity: .9;
 	padding: 20px;
 	color: #efefef;
 	transition: .3s;
@@ -49,10 +59,20 @@ $success: #5ed189;
 		outline: none;
 		border: none;
 		color: #333f4d;
+		cursor: pointer;
 	}
 	#Cancel {
 		border-top-left-radius: 5px;
 		border-bottom-left-radius: 5px;
+		background: #1b303a;
+		color: #b4b4b4;
+		border: 1px solid #b4b4b4;
+		border-right: none;
+		transition: .3s;
+		&:hover {
+			border-color: white;
+			color: white
+		}
 	}
 	#Apply {
 		background-color: $success;
@@ -75,7 +95,7 @@ $success: #5ed189;
 }
 
 .close-icon, .bars-icon {
-	position: absolute;
+	position: fixed;
 	font-size: 1.2em;
 	color: gray;
 	cursor: pointer;
