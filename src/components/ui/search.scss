@@ -7,20 +7,23 @@
 	box-shadow: 1px 1px 1px grey;
 	top: -1px;
 	padding: 10px;
-	.search-icon {
+	.search-icon, .close-icon, .bars-icon {
 		position: absolute;
 		font-size: 1.2em;
 		color: gray;
+		cursor: pointer;
+	}
+	.search-icon {
 		top: 20px;
 		left: 15px;
     }
     .close-icon {
-	    position: absolute;
-	    font-size: 1.4em;
-	    color: gray;
 	    top: 18px;
 	    right: 25px;
-	    cursor: pointer;
+    }
+    .bars-icon {
+		top: 20px;
+		right: 25px;
     }
 }
 #Search-Text {

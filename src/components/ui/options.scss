@@ -1,7 +1,8 @@
 #Options {
 	width: calc(100% - 10px);
 	height: 100%;
-	position: absolute;
+	position: fixed;
+	top: 60px;
 	right: 0;
 	background: #172636;
 	z-index: 20;

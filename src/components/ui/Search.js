@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import './search.scss'
 import FaSearch from 'react-icons/lib/fa/search' 
+import FaBars from 'react-icons/lib/fa/bars' 
 import FaClose from 'react-icons/lib/fa/close' 
 
 class Search extends Component {
@@ -15,6 +16,16 @@ class Search extends Component {
 			_Search.value = '';
 			_Search.focus();
 		}
+		const menuClick = function() {
+			console.log('menu click: ', _this.props.showMenu)
+			_this.props.showMenu = !_this.props.showMenu;
+		}
+		const showOptions = function() {
+
+		}
+		const hideOptions = function() {
+
+		}
 
 		return (
 			<div
@@ -22,7 +33,10 @@ class Search extends Component {
 				value={this.props.value}
 				onChange={this.props.onChange}>
 				<FaSearch className="search-icon"/>
-				{(this.props.value) ? <FaClose className="close-icon" onClick={clearSearch}/> : null}
+
+				{(this.props.showMenu === true) ? <FaClose className="close-icon" onClick={this.props.toggleMenu}/> :
+							  <FaBars className="bars-icon" onClick={this.props.toggleMenu} />}
+
 				<input
 					type="text"
 					id="Search-Text"

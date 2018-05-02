@@ -11,7 +11,8 @@ class LaunchList extends Component {
         this.state = {
             launches: [],
             loading: false,
-            search: ''
+            search: '',
+            showMenu: false
         }
 
     }
@@ -26,6 +27,12 @@ class LaunchList extends Component {
         this.setState({
             search: ''
         });
+    }
+
+    toggleMenu() {
+        this.setState({
+            showMenu: !this.state.showMenu
+        })
     }
     
     componentWillMount() {
@@ -64,9 +71,12 @@ class LaunchList extends Component {
                     ref={(ref) => this.mainInput= ref}
                     value={this.state.search}
                     onChange={this.updateSearch.bind(this)}
-                    clearSearch={this.clearSearch.bind(this)}/>
+                    clearSearch={this.clearSearch.bind(this)}
+                    showMenu={this.state.showMenu}
+                    toggleMenu={this.toggleMenu.bind(this)}/>
 
-                <Options />
+                <Options
+                    showMenu={this.state.showMenu}/>
                 
                 <div id="Launch-Container">
                     {
