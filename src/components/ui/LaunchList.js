@@ -2,6 +2,7 @@ import { Component } from 'react'
 import fetch from 'isomorphic-fetch'
 import Launch from './Launch'
 import Search from './Search'
+import Options from './Options'
 
 class LaunchList extends Component {
 
@@ -64,6 +65,9 @@ class LaunchList extends Component {
                     value={this.state.search}
                     onChange={this.updateSearch.bind(this)}
                     clearSearch={this.clearSearch.bind(this)}/>
+
+                <Options />
+                
                 <div id="Launch-Container">
                     {
                         filteredLaunches.map((launch, i) => 
