@@ -63,16 +63,6 @@ class Launch extends Component {
         const openUrl = function(url) {
             var win = window.open(url, '_blank');
         }
-        const formatDate = function(date) {
-            console.log('formatting date')
-            var d = new Date(date);
-            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            var month = months[d.getMonth()];
-            var day = d.getDate();
-            var year = d.getFullYear();
-
-            return month + ' ' + day + ', ' + year
-        }
 
         return (
             <div className="launch launch-item-container" style={(success ? this.style.successBgColor : this.style.failBgColor)}>
@@ -87,7 +77,7 @@ class Launch extends Component {
                         <div className="launch-details-container">
                             <h3 className="title">Flight #{flight}</h3>
                             <span className="date">
-                                {formatDate(date)}
+                                {date}
                             </span>
                             <h3 className="status" style={(success) ? this.style.successColor : this.style.failColor}> 
                                 {(success) ?

@@ -4,27 +4,6 @@ import FaBars from 'react-icons/lib/fa/bars'
 import FaClose from 'react-icons/lib/fa/close' 
 
 class Options extends Component {
-	constructor(props) {
-		super(props)
-
-		this.state = {
-			showMenu: true,
-			ascending: true,
-			success: true,
-			failure: true,
-			fromDate: null,
-			toDate: null
-		}
-		this.toggleMenu = this.toggleMenu.bind(this);
-		this.onOrderChange = this.onOrderChange.bind(this)
-	}
-
-	toggleMenu() {
-		console.log('toggling menu')
-		this.setState({
-			showMenu: !this.state.showMenu
-		})
-	}
 
 	onOrderChange() {
 		console.log('Ascending change')
@@ -33,19 +12,23 @@ class Options extends Component {
 		})
 	}
 
+	onApply() {
+		console.log('Applying')
+	}
+
 	render() {
 		return (
 			<div id="Options-Container">
 
 
-				{(this.state.showMenu) ?
-					<FaClose className="close-icon" onClick={this.toggleMenu}/> :
-					<FaBars className="bars-icon" onClick={this.toggleMenu} />}
+				{(this.props.showMenu) ?
+					<FaClose className="close-icon" onClick={this.props.toggleMenu}/> :
+					<FaBars className="bars-icon" onClick={this.props.toggleMenu} />}
 
 
 				<div
 					id="Options"
-					className={(this.state.showMenu) ? 'opened' : 'closed'}>
+					className={(this.props.showMenu) ? 'opened' : 'closed'}>
 					<div className="options-bg"></div>
 					<h3>Options</h3>
 					<div className="options-content">
@@ -56,8 +39,8 @@ class Options extends Component {
 								id="Ascending"
 								value="true"
 								ref="Ascending"
-								checked={this.state.ascending}
-								onChange={this.onOrderChange} />
+								checked={this.props.filters.ascending}
+								/>
 							<label htmlFor="Ascending">Ascending</label>
 							<br/>
 							<input
@@ -66,7 +49,7 @@ class Options extends Component {
 								type="radio"
 								id="Descending"
 								ref="Descending"
-								onChange={this.onOrderChange}
+								
 								/>
 							<label htmlFor="Descending">Descending</label>
 							<form></form>
@@ -90,7 +73,7 @@ class Options extends Component {
 						<div className="spacer"></div>
 						<div>
 							<button id="Cancel">Cancel</button>
-							<button id="Apply">Apply</button>
+							<button id="Apply" onClick={() => onApply()}>Apply</button>
 						</div>
 						<div id="Reset-Container">
 							<button id="Reset">reset</button>
