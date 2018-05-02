@@ -50,6 +50,10 @@ class Launch extends Component {
 
     }
 
+    componentDidMount() {
+
+    }
+
     render() {
         const { missionPatch, details, flight, success, date, location, video, articleLink, presskit } = this.props
         const AnyReactComponent = ({ text }) => <div>{ text }</div>;
@@ -73,6 +77,9 @@ class Launch extends Component {
                 <div className="launch-item">
                     <div className="badge" style={this.style.bg}>
                         
+                    </div>
+                    <div className="badge-placeholder-container">
+                        <div className="badge-placeholder"></div>
                     </div>
                     <div className="launch-details">
                         <div className="launch-details-container">

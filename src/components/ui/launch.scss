@@ -141,6 +141,42 @@ $failure: #ef9986;
 		}
 
 	}
+
+	// Placeholder
+	.badge-placeholder-container {
+		position: absolute;
+		width: 100%;
+		padding-bottom: 100%;
+		.badge-placeholder {
+			background: lightgray;
+			width: 40%;
+			height: 40%;
+			border-radius: 50%;
+			position: absolute;
+			top: 15%;
+			left: calc(50% - 20%);
+			z-index: 9;
+			animation: loading .5s infinite alternate;
+	    	-webkit-animation: loading .5s infinite alternate;
+		}
+	}
+	@keyframes loading {
+	  from {
+	    transform: scale(1);
+	  }
+	  to {
+	    transform: scale(1.2);
+	  }
+	}
+	@-webkit-keyframes loading {
+	  from {
+	    transform: scale(1);
+	  }
+	  to {
+	    transform: scale(1.2);
+	  }
+	}
+
 }
 .map-icon-container, .video-icon-container {
 	width: 25%;
