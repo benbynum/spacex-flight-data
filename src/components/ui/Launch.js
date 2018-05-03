@@ -57,7 +57,7 @@ class Launch extends Component {
     }
 
     render() {
-        const { missionPatch, details, flight, success, date, location, video, articleLink, presskit } = this.props
+        const { missionPatch, details, flight, success, date, location, show, video, articleLink, presskit } = this.props
         const AnyReactComponent = ({ text }) => <div>{ text }</div>;
 
         const openUrl = function(url) {
@@ -65,7 +65,9 @@ class Launch extends Component {
         }
 
         return (
-            <div className="launch launch-item-container" style={(success ? this.style.successBgColor : this.style.failBgColor)}>
+            <div
+                className={"launch launch-item-container " + (!show ? 'hide' : '')}
+                style={(success ? this.style.successBgColor : this.style.failBgColor)}>
                 <div className="launch-item">
                     <div className="badge">
                         <img src={missionPatch} alt="" onLoad={() => this.setState({loaded: true})} style={this.state.loaded ? {opacity: 1} : {opacity: 0}}/>

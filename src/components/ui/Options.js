@@ -9,10 +9,14 @@ class Options extends Component {
 		super(props)
 
 		this.state = {
-			isAscending: true
+			isAscending: true,
+			success: true,
+			failure: true
 		}
 
 		this.changeAscending = this.changeAscending.bind(this);
+		this.changeSuccess = this.changeSuccess.bind(this);
+		this.changeFailure = this.changeFailure.bind(this);
 		this.applyFilters = this.applyFilters.bind(this);
 
 	}
@@ -22,6 +26,18 @@ class Options extends Component {
 		console.log(isAscending)
 		this.setState({
 			isAscending
+		})
+	}
+
+	changeSuccess(e) {
+		this.setState({
+			success: e.currentTarget.checked
+		})
+	}
+
+	changeFailure(e) {
+		this.setState({
+			failure: e.currentTarget.checked
 		})
 	}
 
@@ -89,10 +105,20 @@ class Options extends Component {
 						</div>
 						<div className="spacer"></div>
 						<div>
-							<input type="checkbox" id="Successes"/>
+							<input
+								type="checkbox"
+								id="Successes"
+								checked={this.state.success}
+								value={this.state.success}
+								onChange={this.changeSuccess}/>
 							<label htmlFor="Successes">Success</label>
 							<br/>
-							<input type="checkbox" id="Failures"/>
+							<input
+								type="checkbox"
+								id="Failures"
+								checked={this.state.failure}
+								defaultChecked={this.state.failure}
+								onChange={this.changeFailure}/>
 							<label htmlFor="Failures">Failure</label>
 						</div>
 						<div className="spacer"></div>

@@ -13,7 +13,7 @@ class LaunchList extends Component {
             filteredLaunches: [],
             loading: false,
             search: '',
-            showMenu: false,
+            showMenu: true,
             ascending: true,
             success: true,
             failure: true,
@@ -21,11 +21,12 @@ class LaunchList extends Component {
             toDate: null
         }
 
-        this.formatDates = this.formatDates.bind(this);
+        this.formatLaunch = this.formatLaunch.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.updateFilters = this.updateFilters.bind(this);
         this.sortAscending = this.sortAscending.bind(this);
         this.sortDescending = this.sortDescending.bind(this);
+        this.applyFilters = this.applyFilters.bind(this);
     }
 
     updateSearch(event) {
@@ -38,14 +39,16 @@ class LaunchList extends Component {
         console.log('update filters', data)
 
         this.setState({
+            showMenu: !this.state.showMenu, // hide menu on apply
             ascending: data.isAscending,
-            showMenu: !this.state.showMenu
+            success: data.success,
+            failure: data.failure
         }, function() {
             console.log('this.state: ', this.state)
-            // TODO: Finish filtering
-
+            
             if (this.state.ascending === false) this.sortDescending(this.state.filteredLaunches)
             if (this.state.ascending === true) this.sortAscending(this.state.filteredLaunches)
+            this.applyFilters(this.state.filteredLaunches);
             this.forceUpdate();
         })
     }
@@ -72,6 +75,24 @@ class LaunchList extends Component {
         return arr;
     }
 
+    applyFilters(arr) {
+        console.log('applyFilters')
+        var _this = this;
+
+        console.log('arr before filter: ', arr)
+        // Success/Failure
+        arr.forEach(function(launch, i) {
+            launch.show = false;
+
+            if (launch.launch_success && _this.state.success) launch.show = true;
+            if (!launch.launch_success && _this.state.failure) launch.show = true;
+
+        })
+        
+        // TODO:
+        // Date filter
+    }
+
     clearSearch() {
         this.setState({
             search: ''
@@ -90,7 +111,7 @@ class LaunchList extends Component {
         this.setState({loading: true})
         fetch(`https://api.spacexdata.com/v2/launches`)
             .then(response => response.json())
-            .then(launches => this.formatDates(launches))
+            .then(launches => this.formatLaunch(launches))
             .then(launches => this.setState({
                 launches: launches,
                 filteredLaunches: launches,
@@ -101,11 +122,12 @@ class LaunchList extends Component {
             })
     }
 
-    // Create String and JS dates for each launch
-    formatDates(arr) {
+    // Create String, JS dates, and show for each launch
+    formatLaunch(arr) {
         return arr.map((launch, i) => {
             launch.jsDate = new Date(launch.launch_date_local);
             launch.formattedDate = this.formatDate(launch.launch_date_local);
+            launch.show = true;
             return launch;
         });
     }
@@ -163,7 +185,8 @@ class LaunchList extends Component {
                                     location={launch.launch_site.site_name_long}
                                     video={launch.links.video_link}
                                     articleLink={launch.links.article_link}
-                                    presskit={launch.links.presskit}/>
+                                    presskit={launch.links.presskit}
+                                    show={launch.show}/>
                         )
                     }
                 </div>
