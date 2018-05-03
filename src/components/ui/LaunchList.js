@@ -10,6 +10,7 @@ class LaunchList extends Component {
         super(props)
         this.state = {
             launches: [],
+            filteredLaunches: [],
             loading: false,
             search: '',
             showMenu: false,
@@ -23,6 +24,8 @@ class LaunchList extends Component {
         this.formatDates = this.formatDates.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.updateFilters = this.updateFilters.bind(this);
+        this.sortAscending = this.sortAscending.bind(this);
+        this.sortDescending = this.sortDescending.bind(this);
     }
 
     updateSearch(event) {
@@ -32,14 +35,41 @@ class LaunchList extends Component {
     }
 
     updateFilters(data) {
-        console.log('data', data.isAscending)
+        console.log('update filters', data)
+
         this.setState({
-            ascending: false,
+            ascending: data.isAscending,
             showMenu: !this.state.showMenu
         }, function() {
             console.log('this.state: ', this.state)
             // TODO: Finish filtering
+
+            if (this.state.ascending === false) this.sortDescending(this.state.filteredLaunches)
+            if (this.state.ascending === true) this.sortAscending(this.state.filteredLaunches)
+            this.forceUpdate();
         })
+    }
+
+    sortAscending(arr) {
+        console.log('sort ascending')
+        arr.sort(function(a,b) {
+            a = a.jsDate;
+            b = b.jsDate;
+            return a < b ? -1 : a > b ? 1 : 0;
+        })
+        
+        return arr;
+    }
+
+    sortDescending(arr) {
+        console.log('sort descending')
+        arr.sort(function(a,b) {
+            a = a.jsDate;
+            b = b.jsDate;
+            return a > b ? -1 : a < b ? 1 : 0;
+        })
+
+        return arr;
     }
 
     clearSearch() {
@@ -63,10 +93,11 @@ class LaunchList extends Component {
             .then(launches => this.formatDates(launches))
             .then(launches => this.setState({
                 launches: launches,
+                filteredLaunches: launches,
                 loading: false
             }))
             .then(function() {
-                console.log('Launches: ', _this.state.launches)
+                console.log('this.state: ', _this.state)
             })
     }
 
@@ -91,7 +122,7 @@ class LaunchList extends Component {
     }
 
     render() {
-        let filteredLaunches = this.state.launches.filter(
+        let launches = this.state.filteredLaunches.filter(
             (launch) => {
                 if (!this.state.search.length) {
                     return launch;
@@ -122,7 +153,7 @@ class LaunchList extends Component {
                 
                 <div id="Launch-Container">
                     {
-                        filteredLaunches.map((launch, i) => 
+                    launches.map((launch, i) => 
                             <Launch missionPatch={launch.links.mission_patch_small}
                                     key={i}
                                     flight={launch.flight_number}
