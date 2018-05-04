@@ -14,6 +14,7 @@ $success: #5ed189;
 	label, input {
 		cursor: pointer !important;
 	}
+	-webkit-font-smoothing: antialiased;
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -37,13 +38,13 @@ $success: #5ed189;
 	h3 {
 		font-size: 2em;
 		margin-top: 0;
-		margin-bottom: 20px;
-		font-weight: 200;
+		margin-bottom: 5px;
+		font-weight: 300;
 	}
 	.spacer {
 		width: 10%;
 		height: 15px;
-		margin-bottom: 15px;
+		margin-bottom: 25px;
 		border-bottom: 1px solid #909090;
 	}
 	.options-content {
@@ -63,6 +64,7 @@ $success: #5ed189;
 		border: none;
 		color: #333f4d;
 		cursor: pointer;
+		transition: .3s;
 	}
 	#Cancel {
 		border-top-left-radius: 5px;
@@ -81,6 +83,12 @@ $success: #5ed189;
 		background-color: $success;
 		border-top-right-radius: 5px;
 		border-bottom-right-radius: 5px;
+		border: 1px solid $success;
+		color: #ffffff;
+		&:hover {
+			border-color: white;
+			color: white
+		}
 	}
 	#Reset-Container {
 		text-align: center;
@@ -93,6 +101,9 @@ $success: #5ed189;
 			font-size: 90%;
 			text-decoration: underline;
 			font-weight: 100;
+			&:hover {
+				color: white;
+			}
 		}
 	}
 }
@@ -116,7 +127,7 @@ $success: #5ed189;
 .react-datepicker-wrapper {
 	.react-datepicker__input-container {
 		input {
-			height: 30px;
+			height: 35px;
 			border-radius: 3px;
 			border: none;
 			padding: 0 10px;
@@ -147,7 +158,7 @@ $success: #5ed189;
 }
 
 /* Create a custom radio button */
-.checkmark {
+.circlemark {
     position: absolute;
     top: 0;
     left: 0;
@@ -158,35 +169,101 @@ $success: #5ed189;
 }
 
 /* On mouse-over, add a grey background color */
-.radio-container:hover input ~ .checkmark {
+.radio-container:hover input ~ .circlemark {
     background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
-.radio-container input:checked ~ .checkmark {
+.radio-container input:checked ~ .circlemark {
     background-color: $success;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
+.circlemark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
-.radio-container input:checked ~ .checkmark:after {
+.radio-container input:checked ~ .circlemark:after {
     display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.radio-container .checkmark:after {
+.radio-container .circlemark:after {
  	top: 7px;
 	left: 7px;
 	width: 7px;
 	height: 7px;
 	border-radius: 50%;
 	background: white;
+}
+
+
+/* Checkbox container */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+    background-color: $success;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 @media only screen and(min-width: 300px) {

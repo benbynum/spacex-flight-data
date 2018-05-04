@@ -123,6 +123,7 @@ class Options extends Component {
 					<div className="options-bg"></div>
 					<h3>Options</h3>
 					<div className="options-content">
+					<div className="spacer"></div>
 						<div>
 							<label className="radio-container">Ascending
 								<input
@@ -133,7 +134,7 @@ class Options extends Component {
 									checked={isAscending === true}
 									onChange={this.changeAscending}
 									/>
-								<span className="checkmark"></span>
+								<span className="circlemark"></span>
 							</label>
 							<label className="radio-container">Descending
 								<input
@@ -144,28 +145,35 @@ class Options extends Component {
 									checked={isAscending === false}
 									onChange={this.changeAscending}
 									/>
+								<span className="circlemark"></span>
+							</label>
+						</div>
+
+						<div className="spacer"></div>
+
+						<div>
+							<label htmlFor="Successes" className="checkbox-container">Success
+								<input
+									type="checkbox"
+									id="Successes"
+									checked={this.state.success}
+									value={this.state.success}
+									onChange={this.changeSuccess}/>
+								<span className="checkmark"></span>
+							</label>
+							<label htmlFor="Failures" className="checkbox-container">Failure
+								<input
+									type="checkbox"
+									id="Failures"
+									checked={this.state.failure}
+									defaultChecked={this.state.failure}
+									onChange={this.changeFailure}/>
 								<span className="checkmark"></span>
 							</label>
 						</div>
+
 						<div className="spacer"></div>
-						<div>
-							<input
-								type="checkbox"
-								id="Successes"
-								checked={this.state.success}
-								value={this.state.success}
-								onChange={this.changeSuccess}/>
-							<label htmlFor="Successes">Success</label>
-							<br/>
-							<input
-								type="checkbox"
-								id="Failures"
-								checked={this.state.failure}
-								defaultChecked={this.state.failure}
-								onChange={this.changeFailure}/>
-							<label htmlFor="Failures">Failure</label>
-						</div>
-						<div className="spacer"></div>
+						
 						<div>
 							<DatePicker
 								placeholderText="From Date"
@@ -176,7 +184,9 @@ class Options extends Component {
 								selected={this.state.toDate}
 								onChange={this.handleToDate}/>
 						</div>
+
 						<div className="spacer"></div>
+						
 						<div>
 							<button id="Cancel" onClick={this.handleCancel}>Cancel</button>
 							<button
