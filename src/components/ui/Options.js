@@ -131,10 +131,11 @@ class Options extends Component {
 		return (
 			<div id="Options-Container">
 
-
-				{(this.props.showMenu) ?
-					<FaClose className="close-icon" onClick={this.props.toggleMenu}/> :
-					<FaBars className="bars-icon" onClick={(event) => { this.props.toggleMenu(); this.cacheState(); }} />}
+				<div className="menu-icon" onClick={this.props.toggleMenu}>
+					{(this.props.showMenu) ?
+						<FaClose className="close-icon" onClick={this.props.toggleMenu}/> :
+						<FaBars className="bars-icon" onClick={(event) => { this.props.toggleMenu(); this.cacheState(); }} />}
+				</div>
 
 
 				<div

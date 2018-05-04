@@ -10,6 +10,15 @@ $success: #5ed189;
 	opacity: .99;
 	z-index: -1;
 }
+.menu-icon {
+	display: inline-block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    z-index: 20;
+}
 .about-bg { 
 	overflow: scroll;
 	padding: 20px;
@@ -63,6 +72,7 @@ $success: #5ed189;
 	.options-content {
 		font-size: 1.1em;
 		letter-spacing: 1px;
+		padding-bottom: 80px;
 		input {
 			margin-bottom: 10px;
 		}
