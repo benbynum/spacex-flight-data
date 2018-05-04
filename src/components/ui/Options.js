@@ -124,26 +124,28 @@ class Options extends Component {
 					<h3>Options</h3>
 					<div className="options-content">
 						<div>
-							<input
-								name="ascending"
-								type="radio"
-								id="Ascending"
-								value="true"
-								checked={isAscending === true}
-								onChange={this.changeAscending}
-								/>
-							<label htmlFor="Ascending">Ascending</label>
-							<br/>
-							<input
-								name="ascending"
-								value="false"
-								type="radio"
-								id="Descending"
-								checked={isAscending === false}
-								onChange={this.changeAscending}
-								/>
-							<label htmlFor="Descending">Descending</label>
-							<form></form>
+							<label className="radio-container">Ascending
+								<input
+									name="ascending"
+									type="radio"
+									id="Ascending"
+									value="true"
+									checked={isAscending === true}
+									onChange={this.changeAscending}
+									/>
+								<span className="checkmark"></span>
+							</label>
+							<label className="radio-container">Descending
+								<input
+									name="ascending"
+									value="false"
+									type="radio"
+									id="Descending"
+									checked={isAscending === false}
+									onChange={this.changeAscending}
+									/>
+								<span className="checkmark"></span>
+							</label>
 						</div>
 						<div className="spacer"></div>
 						<div>
@@ -165,13 +167,12 @@ class Options extends Component {
 						</div>
 						<div className="spacer"></div>
 						<div>
-							<label htmlFor="FromDate">From</label>
 							<DatePicker
+								placeholderText="From Date"
 								selected={this.state.fromDate}
 								onChange={this.handleFromDate}/>
-							<br/>
-							<label htmlFor="ToDate">To</label>
 							<DatePicker 
+								placeholderText="To Date"
 								selected={this.state.toDate}
 								onChange={this.handleToDate}/>
 						</div>
