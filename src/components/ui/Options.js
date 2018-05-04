@@ -154,7 +154,7 @@ class Options extends Component {
 							One mission particularly worth reading about is Flight 59. This included a satellite platform called RemoveDEBRIS which has the goal of cleaning up space junk (satellite pieces, boosters, nuts and bolts). There's about 750,000 pieces of debris floating around our planet at any given time.
 							<br/>
 							<br/>
-							In 2015 alone, the International Space Station had to perform 5 maneuvers to avoid collisions. Not only would an impact be devastating, it could also create additional clouds of debris, potentially triggering a chain reaction and jeaopardizing the safety of all astronauts, satellites, and future missions.
+							In 2015 alone, the International Space Station had to perform 5 maneuvers to avoid collisions. Not only would an impact be devastating, it could also create additional clouds of debris, potentially triggering a chain reaction and jeopardizing the safety of all astronauts, satellites, and future missions.
 						</span>
 					</div>
 					<h3>{(!this.state.about) ? 'Options' : 'About'}</h3>
