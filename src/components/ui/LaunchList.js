@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch'
 import Launch from './Launch'
 import Search from './Search'
 import Options from './Options'
+import moment from 'moment'
 
 class LaunchList extends Component {
 
@@ -42,7 +43,9 @@ class LaunchList extends Component {
             showMenu: !this.state.showMenu, // hide menu on apply
             ascending: data.isAscending,
             success: data.success,
-            failure: data.failure
+            failure: data.failure,
+            fromDate: data.fromDate,
+            toDate: data.toDate
         }, function() {
             console.log('this.state: ', this.state)
             
@@ -86,7 +89,13 @@ class LaunchList extends Component {
 
             if (launch.launch_success && _this.state.success) launch.show = true;
             if (!launch.launch_success && _this.state.failure) launch.show = true;
-
+            
+            // From Date
+            console.log('launch.jsDate: ', launch.jsDate)
+            console.log('_this.state.fromDate:', _this.state.fromDate)
+            console.log('moment(launch.jsDate).isBefore(_this.state.fromDate):', moment(launch.jsDate).isBefore(_this.state.fromDate))
+            if (moment(launch.jsDate).isBefore(_this.state.fromDate)) launch.show = false;
+            if (moment(launch.jsDate).isAfter(_this.state.toDate)) launch.show = false;
         })
         
         // TODO:

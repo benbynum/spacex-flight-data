@@ -1,4 +1,7 @@
 import { Component } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment'
 import './options.scss'
 import FaBars from 'react-icons/lib/fa/bars' 
 import FaClose from 'react-icons/lib/fa/close' 
@@ -11,19 +14,22 @@ class Options extends Component {
 		this.state = {
 			isAscending: true,
 			success: true,
-			failure: true
+			failure: true,
+			fromDate: null,
+			toDate: null
 		}
 
 		this.changeAscending = this.changeAscending.bind(this);
 		this.changeSuccess = this.changeSuccess.bind(this);
 		this.changeFailure = this.changeFailure.bind(this);
 		this.applyFilters = this.applyFilters.bind(this);
+		this.handleFromDate = this.handleFromDate.bind(this);
+		this.handleToDate = this.handleToDate.bind(this);
 
 	}
 
 	changeAscending(e) {
 		const isAscending = e.currentTarget.value === 'true' ? true: false;
-		console.log(isAscending)
 		this.setState({
 			isAscending
 		})
@@ -45,6 +51,16 @@ class Options extends Component {
 		_this.props.updateFilters(this.state)
 	}
 	
+	handleFromDate(date) {
+		this.setState({
+			fromDate: date
+		})
+	}
+	handleToDate(date) {
+		this.setState({
+			toDate: date
+		})
+	}
 	render() {
 
 		let _this = this;
@@ -124,10 +140,14 @@ class Options extends Component {
 						<div className="spacer"></div>
 						<div>
 							<label htmlFor="FromDate">From</label>
-							<input type="date" id="FromDate"/>
+							<DatePicker
+								selected={this.state.fromDate}
+								onChange={this.handleFromDate}/>
 							<br/>
 							<label htmlFor="ToDate">To</label>
-							<input type="date" id="ToDate"/>
+							<DatePicker 
+								selected={this.state.toDate}
+								onChange={this.handleToDate}/>
 						</div>
 						<div className="spacer"></div>
 						<div>
