@@ -19,12 +19,17 @@ class Options extends Component {
 			toDate: null
 		}
 
+		this.cachedState = {}
+
 		this.changeAscending = this.changeAscending.bind(this);
 		this.changeSuccess = this.changeSuccess.bind(this);
 		this.changeFailure = this.changeFailure.bind(this);
 		this.applyFilters = this.applyFilters.bind(this);
 		this.handleFromDate = this.handleFromDate.bind(this);
 		this.handleToDate = this.handleToDate.bind(this);
+		this.cacheState = this.cacheState.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
+		this.handleReset = this.handleReset.bind(this);
 
 	}
 
@@ -61,6 +66,27 @@ class Options extends Component {
 			toDate: date
 		})
 	}
+
+	cacheState(e) {
+		this.cachedState = Object.assign({}, this.state);
+		console.log('cachedState: ', this.cachedState);
+	}
+	
+	handleCancel() {
+		this.setState(this.cachedState);
+		this.props.toggleMenu();
+	}
+
+	handleReset() {
+		this.setState({
+			isAscending: true,
+			success: true,
+			failure: true,
+			fromDate: null,
+			toDate: null
+		})
+	}
+
 	render() {
 
 		let _this = this;
@@ -88,7 +114,7 @@ class Options extends Component {
 
 				{(this.props.showMenu) ?
 					<FaClose className="close-icon" onClick={this.props.toggleMenu}/> :
-					<FaBars className="bars-icon" onClick={this.props.toggleMenu} />}
+					<FaBars className="bars-icon" onClick={(event) => { this.props.toggleMenu(); this.cacheState(); }} />}
 
 
 				<div
@@ -151,13 +177,13 @@ class Options extends Component {
 						</div>
 						<div className="spacer"></div>
 						<div>
-							<button id="Cancel" onClick={() => handleButtonClick('Cancel')}>Cancel</button>
+							<button id="Cancel" onClick={this.handleCancel}>Cancel</button>
 							<button
 								id="Apply"
 								onClick={ () => this.props.updateFilters(this.state) }>Apply</button>
 						</div>
 						<div id="Reset-Container">
-							<button id="Reset" onClick={() => handleButtonClick('Reset')}>reset</button>
+							<button id="Reset" onClick={this.handleReset}>reset</button>
 						</div>
 					</div>
 				</div>
