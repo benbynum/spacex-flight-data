@@ -4,7 +4,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment'
 import './options.scss'
 import FaBars from 'react-icons/lib/fa/bars' 
-import FaClose from 'react-icons/lib/fa/close' 
+import FaClose from 'react-icons/lib/fa/close'
+import FaCloseThin from 'react-icons/lib/md/close' 
+import FaQuestionCircle from 'react-icons/lib/fa/question-circle' 
 
 class Options extends Component {
 
@@ -16,7 +18,17 @@ class Options extends Component {
 			success: true,
 			failure: true,
 			fromDate: null,
-			toDate: null
+			toDate: null,
+			about: false
+		}
+		
+		this.style = {}
+		this.style.showAbout = {
+			opacity: 1
+		}
+		this.style.hideAbout = {
+			opacity: 0,
+			zIndex: -1
 		}
 
 		this.cachedState = {}
@@ -30,6 +42,7 @@ class Options extends Component {
 		this.cacheState = this.cacheState.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleReset = this.handleReset.bind(this);
+		this.toggleAbout = this.toggleAbout.bind(this);
 
 	}
 
@@ -87,6 +100,13 @@ class Options extends Component {
 		})
 	}
 
+	toggleAbout() {
+		console.log('toggling about')
+		this.setState({
+			about: !this.state.about
+		})
+	}
+
 	render() {
 
 		let _this = this;
@@ -120,8 +140,23 @@ class Options extends Component {
 				<div
 					id="Options"
 					className={(this.props.showMenu) ? 'opened' : 'closed'}>
+					{(!this.state.about) ?
+						<FaQuestionCircle className="about" onClick={this.toggleAbout}/> :
+						<FaCloseThin className="aboutClose" onClick={this.toggleAbout}/>
+					}
 					<div className="options-bg"></div>
-					<h3>Options</h3>
+					<div className="about-bg" style={ (this.state.about) ? this.style.showAbout : this.style.hideAbout}>
+						<span>
+							I recently stumbled across an open API that has all of SpaceX’s launch data and decided it would be fun to make an app that fetches and displays it in a friendly, searchable manner.
+							<br />
+							<br />
+							One mission particularly worth reading about is Flight 59. This included a satellite platform called RemoveDEBRIS which has the goal of cleaning up space junk (satellite pieces, boosters, nuts and bolts). There's about 750,000 pieces of debris floating around our planet at any given time.
+							<br/>
+							<br/>
+							In 2015 alone, the International Space Station had to perform 5 maneuvers to avoid collisions. Not only would an impact be devastating, it could also create additional clouds of debris, potentially triggering a chain reaction and jeaopardizing the safety of all astronauts, satellites, and future missions.
+						</span>
+					</div>
+					<h3>{(!this.state.about) ? 'Options' : 'About'}</h3>
 					<div className="options-content">
 					<div className="spacer"></div>
 						<div>

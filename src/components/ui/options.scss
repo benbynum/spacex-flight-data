@@ -10,23 +10,36 @@ $success: #5ed189;
 	opacity: .99;
 	z-index: -1;
 }
+.about-bg { 
+	overflow: scroll;
+	padding: 20px;
+	width: 100%;
+	max-height: calc(100% - 160px);
+	position: absolute;
+	top: 100px;
+	left: 0;
+	background: #313841;
+	opacity: .99;
+	font-size: 1.2em;
+	z-index: 1;
+	transition: 0;
+	padding-top: 0px;
+}
 #Options {
 	label, input {
 		cursor: pointer !important;
 	}
+	overflow: scroll;
 	-webkit-font-smoothing: antialiased;
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 60px;
 	right: 0;
-	// background: #172636;
 	z-index: 20;
-	// opacity: .9;
 	padding: 20px;
 	color: #efefef;
 	transition: .3s;
-	// font-family: 'Istok Web';
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-weight: 100;
 	&.opened {
@@ -264,6 +277,14 @@ $success: #5ed189;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.about, .aboutClose {
+	position: absolute;
+	top: 27px;
+	right: 23px;
+	font-size: 1.5em;
+	cursor: pointer;
 }
 
 @media only screen and(min-width: 300px) {
