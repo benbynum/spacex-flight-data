@@ -109,3 +109,42 @@ $success: #5ed189;
 	top: 20px;
 	right: 25px;
 }
+
+@media only screen and(min-width: 300px) {
+	#Options {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	#Options {
+		width: 50%;
+		&.closed {
+			right: -50%;
+		}
+	}
+}
+@media only screen and (min-width: 1000px) {
+	#Options {
+		width: 33.33%;
+		&.closed {
+			right: -33.33%;
+		}
+	}
+}
+@media only screen and (min-width: 1200px) {
+	#Options {
+		width: 25%;
+		&.closed {
+			right: -25%;
+		}
+	}
+}
+@media only screen and (min-width: 1600px) {
+	#Options {
+		width: 400px;
+		&.closed {
+			right: -400px;
+		}
+	}
+}
