@@ -28,14 +28,14 @@
 }
 #Search-Text {
     height: 40px;
-    width: 100%;
+    width: calc(100% - 50px);
     border-radius: 5px;
     border: none;
     background: transparent;
     font-size: 1.1em;
     color: black;
     font-weight: 100;
-    padding: 0 40px;
+    padding-left: 40px;
     &:focus {
     	outline: none;
     }
