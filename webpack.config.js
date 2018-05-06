@@ -1,9 +1,9 @@
 module.exports = {
-    entry: "./src/index.js",
+    entry: __dirname + "/src/index.js",
     output: {
-        path: "dist/assets",
+        path: __dirname + "/dist/assets",
         filename: "bundle.min.js",
-        publicPath: "/assets/"
+        publicPath: "assets"
     },
     devServer: {
         inline: true,
@@ -11,13 +11,14 @@ module.exports = {
         port: 3000
     },
     module: {
-        loaders: [
+        // New since webpack 3, `loaders` has become `rules`
+        rules: [
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
-                loader: ['babel'],
+                loader: 'babel-loader',
                 query: {
-                    presets: ['es2015', 'react', 'stage-0']
+                    presets: ['env', 'react']
                 }
             },
             {

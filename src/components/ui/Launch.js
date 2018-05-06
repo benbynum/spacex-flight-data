@@ -6,11 +6,6 @@ import FaExternalLink from 'react-icons/lib/fa/external-link'
 
 class Launch extends Component {
 
-    static defaultProps = {
-        center: { lat: 40.7446790, lng: -73.9485420 },
-        zoom: 11
-    }
-
     constructor(props) {
         super(props)
         const successColor = '#5ed189';
