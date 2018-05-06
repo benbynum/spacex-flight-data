@@ -20,10 +20,9 @@ $success: #5ed189;
     z-index: 20;
 }
 .about-bg { 
-	overflow: scroll;
 	padding: 20px;
 	width: 100%;
-	max-height: calc(100% - 160px);
+	height: 100%;
 	position: absolute;
 	top: 100px;
 	left: 0;
@@ -38,14 +37,14 @@ $success: #5ed189;
 	label, input {
 		cursor: pointer !important;
 	}
-	overflow: scroll;
+	// overflow: scroll;
 	-webkit-font-smoothing: antialiased;
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 60px;
 	right: 0;
-	z-index: 20;
+	z-index: 30;
 	padding: 20px;
 	color: #efefef;
 	transition: .3s;
@@ -146,7 +145,18 @@ $success: #5ed189;
 	top: 20px;
 	right: 25px;
 }
+.date-close {
+	position: absolute;
+    top: 5px;
+    right: calc(100% - 200px);
+    font-size: 1.3em;
+    cursor: pointer;
+}
 
+
+.datepicker-container {
+	position: relative;
+}
 .react-datepicker-wrapper {
 	.react-datepicker__input-container {
 		input {
@@ -157,6 +167,7 @@ $success: #5ed189;
 			font-size: .8em;
 			font-weight: 100;
 			outline: none;
+			cursor: pointer;
 		}
 	}
 }

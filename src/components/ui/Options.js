@@ -43,6 +43,7 @@ class Options extends Component {
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleReset = this.handleReset.bind(this);
 		this.toggleAbout = this.toggleAbout.bind(this);
+		this.clearDate = this.clearDate.bind(this);
 
 	}
 
@@ -106,6 +107,12 @@ class Options extends Component {
 			about: !this.state.about
 		})
 	}
+	clearDate(which) {
+		console.log('clearing date')
+		this.setState({
+			[which+'Date']: null
+		})
+	}
 
 	render() {
 
@@ -125,6 +132,11 @@ class Options extends Component {
 		const handleReset = function() {
 			console.log('Resetting')
 		}
+
+		var datePickerProps = {};
+
+		// Mobile, make datepicker readonly to hide virtual keyboard which renders 
+		// if (window.innerWidth <= 420) datePickerProps.readOnly = true;
 
 		
 
@@ -149,12 +161,6 @@ class Options extends Component {
 					<div className="about-bg" style={ (this.state.about) ? this.style.showAbout : this.style.hideAbout}>
 						<span>
 							I recently stumbled across an open API that has all of SpaceX’s launch data and decided it would be fun to make an app that fetches and displays it in a friendly, searchable manner.
-							<br />
-							<br />
-							One mission particularly worth reading about is Flight 59. This included a satellite platform called RemoveDEBRIS which has the goal of cleaning up space junk (satellite pieces, boosters, nuts and bolts). There's about 750,000 pieces of debris floating around our planet at any given time.
-							<br/>
-							<br/>
-							In 2015 alone, the International Space Station had to perform 5 maneuvers to avoid collisions. Not only would an impact be devastating, it could also create additional clouds of debris, potentially triggering a chain reaction and jeopardizing the safety of all astronauts, satellites, and future missions.
 						</span>
 					</div>
 					<h3>{(!this.state.about) ? 'Options' : 'About'}</h3>
@@ -210,28 +216,29 @@ class Options extends Component {
 
 						<div className="spacer"></div>
 						
-						<div>
+						<div className="datepicker-container">
 							<DatePicker
+								readOnly="true"
 								placeholderText="From Date"
 								selected={this.state.fromDate}
 								onChange={this.handleFromDate}/>
-							<DatePicker 
+								<FaCloseThin
+									className="date-close"
+									style={ (this.state.fromDate) ? {'display': 'inline'} : {'display': 'none'} }
+									onClick={() => this.clearDate('from')}/>
+						</div>
+						<div className="datepicker-container">
+							<DatePicker
+								readOnly="true" 
 								placeholderText="To Date"
 								selected={this.state.toDate}
 								onChange={this.handleToDate}/>
+								<FaCloseThin
+									className="date-close"
+									style={ (this.state.toDate) ? {'display': 'inline'} : {'display': 'none'} }
+									onClick={() => this.clearDate('to')}/>
 						</div>
 
-						<div className="spacer"></div>
-						
-						<div>
-							<button id="Cancel" onClick={this.handleCancel}>Cancel</button>
-							<button
-								id="Apply"
-								onClick={ () => this.props.updateFilters(this.state) }>Apply</button>
-						</div>
-						<div id="Reset-Container">
-							<button id="Reset" onClick={this.handleReset}>reset</button>
-						</div>
 					</div>
 				</div>
 			</div>
