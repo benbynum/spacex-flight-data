@@ -40,7 +40,6 @@ class LaunchList extends Component {
         console.log('update filters', data)
 
         this.setState({
-            showMenu: !this.state.showMenu, // hide menu on apply
             ascending: data.isAscending,
             success: data.success,
             failure: data.failure,
@@ -79,10 +78,8 @@ class LaunchList extends Component {
     }
 
     applyFilters(arr) {
-        console.log('applyFilters')
         var _this = this;
 
-        console.log('arr before filter: ', arr)
         // Success/Failure
         arr.forEach(function(launch, i) {
             launch.show = false;
@@ -91,15 +88,9 @@ class LaunchList extends Component {
             if (!launch.launch_success && _this.state.failure) launch.show = true;
             
             // From Date
-            console.log('launch.jsDate: ', launch.jsDate)
-            console.log('_this.state.fromDate:', _this.state.fromDate)
-            console.log('moment(launch.jsDate).isBefore(_this.state.fromDate):', moment(launch.jsDate).isBefore(_this.state.fromDate))
             if (moment(launch.jsDate).isBefore(_this.state.fromDate)) launch.show = false;
             if (moment(launch.jsDate).isAfter(_this.state.toDate)) launch.show = false;
         })
-        
-        // TODO:
-        // Date filter
     }
 
     clearSearch() {

@@ -31,17 +31,11 @@ class Options extends Component {
 			zIndex: -1
 		}
 
-		this.cachedState = {}
-
 		this.changeAscending = this.changeAscending.bind(this);
 		this.changeSuccess = this.changeSuccess.bind(this);
 		this.changeFailure = this.changeFailure.bind(this);
-		this.applyFilters = this.applyFilters.bind(this);
 		this.handleFromDate = this.handleFromDate.bind(this);
 		this.handleToDate = this.handleToDate.bind(this);
-		this.cacheState = this.cacheState.bind(this);
-		this.handleCancel = this.handleCancel.bind(this);
-		this.handleReset = this.handleReset.bind(this);
 		this.toggleAbout = this.toggleAbout.bind(this);
 		this.clearDate = this.clearDate.bind(this);
 
@@ -51,53 +45,40 @@ class Options extends Component {
 		const isAscending = e.currentTarget.value === 'true' ? true: false;
 		this.setState({
 			isAscending
+		}, function() {
+			this.props.updateFilters(this.state);
 		})
+
 	}
 
 	changeSuccess(e) {
 		this.setState({
 			success: e.currentTarget.checked
+		}, function() {
+			this.props.updateFilters(this.state);
 		})
 	}
 
 	changeFailure(e) {
 		this.setState({
 			failure: e.currentTarget.checked
+		}, function() {
+			this.props.updateFilters(this.state);
 		})
-	}
-
-	applyFilters() {
-		_this.props.updateFilters(this.state)
 	}
 	
 	handleFromDate(date) {
 		this.setState({
 			fromDate: date
+		}, function() {
+			this.props.updateFilters(this.state);
 		})
 	}
 	handleToDate(date) {
 		this.setState({
 			toDate: date
-		})
-	}
-
-	cacheState(e) {
-		this.cachedState = Object.assign({}, this.state);
-		console.log('cachedState: ', this.cachedState);
-	}
-	
-	handleCancel() {
-		this.setState(this.cachedState);
-		this.props.toggleMenu();
-	}
-
-	handleReset() {
-		this.setState({
-			isAscending: true,
-			success: true,
-			failure: true,
-			fromDate: null,
-			toDate: null
+		}, function() {
+			this.props.updateFilters(this.state);
 		})
 	}
 
@@ -111,6 +92,8 @@ class Options extends Component {
 		console.log('clearing date')
 		this.setState({
 			[which+'Date']: null
+		}, function() {
+			this.props.updateFilters(this.state);
 		})
 	}
 
@@ -133,10 +116,10 @@ class Options extends Component {
 			console.log('Resetting')
 		}
 
-		var datePickerProps = {};
+		var datePickerStyle = {};
 
-		// Mobile, make datepicker readonly to hide virtual keyboard which renders 
-		// if (window.innerWidth <= 420) datePickerProps.readOnly = true;
+		//Mobile, make datepicker readonly to hide virtual keyboard which renders 
+		if (window.innerWidth <= 420) datePickerStyle.display = 'none' ;
 
 		
 
@@ -214,11 +197,10 @@ class Options extends Component {
 							</label>
 						</div>
 
-						<div className="spacer"></div>
-						
-						<div className="datepicker-container">
+						<div className="spacer" style={datePickerStyle}></div>
+
+						<div className="datepicker-container" style={datePickerStyle}>
 							<DatePicker
-								readOnly="true"
 								placeholderText="From Date"
 								selected={this.state.fromDate}
 								onChange={this.handleFromDate}/>
@@ -227,9 +209,8 @@ class Options extends Component {
 									style={ (this.state.fromDate) ? {'display': 'inline'} : {'display': 'none'} }
 									onClick={() => this.clearDate('from')}/>
 						</div>
-						<div className="datepicker-container">
+						<div className="datepicker-container" style={datePickerStyle}>
 							<DatePicker
-								readOnly="true" 
 								placeholderText="To Date"
 								selected={this.state.toDate}
 								onChange={this.handleToDate}/>
