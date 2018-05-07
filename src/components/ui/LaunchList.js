@@ -14,7 +14,7 @@ class LaunchList extends Component {
             filteredLaunches: [],
             loading: false,
             search: '',
-            showMenu: true,
+            showMenu: false,
             ascending: true,
             success: true,
             failure: true,
